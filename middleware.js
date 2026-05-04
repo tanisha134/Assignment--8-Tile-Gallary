@@ -1,5 +1,11 @@
-import { NextResponse } from "next/server";
+import { auth } from "@/lib/auth";
 
-export function middleware() {
-    return NextResponse.next();
+export async function middleware(req) {
+  const session = await auth.api.getSession(req);
+
+  if (!session && req.nextUrl.pathname.startsWith("/my-profile")) {
+    return Response.redirect(new URL("/login", req.url));
+  }
+
+  return Response.next();
 }
