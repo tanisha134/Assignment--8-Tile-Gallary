@@ -17,7 +17,7 @@ export default function TileCard() {
                 </h2>
 
                 <Link href="/all-tiles" className="mt-6">
-                <button className="btn bgg-blue-200 text-blue-800 underline px-6 shadow-md hover:shadow-xl hover:scale-105 active:scale-95 transition duration-300 rounded-full">
+                <button className="btn bg-blue-200 text-blue-800 underline px-6 shadow-md hover:shadow-xl hover:scale-105 active:scale-95 transition duration-300 rounded-full">
                     Go Back
                 </button>
                 </Link>
