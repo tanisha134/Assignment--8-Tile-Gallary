@@ -14,7 +14,7 @@ export const auth = betterAuth({
   }),
  trustedOrigins: [
     "http://localhost:3000",
-    "https://your-frontend-domain.vercel.app",
+    "https://assignment-8-tile-gallary.vercel.app",
   ],
   emailAndPassword: { 
     enabled: true, 
