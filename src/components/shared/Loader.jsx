@@ -20,14 +20,10 @@ export default function Loader() {
                 <div className="relative">
                     <div className="w-20 h-20 border-4 border-purple-200 border-t-purple-600 animate-spin  rounded-full"></div>
 
-                    <div className="absolute top-0 left-0 w-20 h-20 border-4 border-t-purple-600 border-r-purple-600
+                    <div className="absolute inset-0 w-20 h-20 border-4 border-t-purple-600 border-r-purple-600
                     border-b-transparent border-l-transparent rounded-full animate-spin "></div>
-                    
-                  
-
-                </div>
-                {/* Text */}
-                  <div className="text-center">
+                    {/* Text */}
+                    <div className="text-center">
                         <h2 className="text-2xl font-bold bg-linear-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent inline-block">
                             TileGallery
                         </h2>
@@ -36,6 +32,8 @@ export default function Loader() {
                         </p>
 
                     </div>
+
+                </div>
 
             </div>
 
