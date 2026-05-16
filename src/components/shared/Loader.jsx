@@ -14,7 +14,7 @@ export default function Loader() {
     if(!show) return null;
 
     return(
-        <div className="min-h-screen flex items-center justify-center bg-linear-to-br from-blue-50 via-white to-purple-100">
+        <div className="fixed inset-0 items-center justify-center bg-linear-to-br from-blue-50 via-white to-purple-100 z-50">
             <div className="flex flex-col items-center gap-5">
                 {/* Spinner */}
                 <div className="relative">
