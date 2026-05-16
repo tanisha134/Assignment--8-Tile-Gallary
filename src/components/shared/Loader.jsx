@@ -14,7 +14,7 @@ export default function Loader() {
     if(!show) return null;
 
     return(
-        <div className="fixed inset-0 items-center justify-center bg-linear-to-br from-blue-50 via-white to-purple-100 z-50">
+        <div className="min-h-screen flex items-center justify-center bg-linear-to-br from-blue-50 via-white to-purple-100">
             <div className="flex flex-col items-center gap-5">
                 {/* Spinner */}
                 <div className="relative">
@@ -22,8 +22,12 @@ export default function Loader() {
 
                     <div className="absolute top-0 left-0 w-20 h-20 border-4 border-t-purple-600 border-r-purple-600
                     border-b-transparent border-l-transparent rounded-full animate-spin "></div>
-                    {/* Text */}
-                    <div className="text-center">
+                    
+                  
+
+                </div>
+                {/* Text */}
+                  <div className="text-center">
                         <h2 className="text-2xl font-bold bg-linear-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent inline-block">
                             TileGallery
                         </h2>
@@ -32,8 +36,6 @@ export default function Loader() {
                         </p>
 
                     </div>
-
-                </div>
 
             </div>
 
