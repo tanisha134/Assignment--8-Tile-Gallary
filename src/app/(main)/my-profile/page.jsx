@@ -7,10 +7,17 @@ import Link from "next/link";
 export default function MyProfilePage() {
   const { data: session, isPending} = authClient.useSession();
   const user = session?.user;
-
   if (isPending) {
     return <Loader />;
   }
+  if (!user) {
+  return (
+    <div className="min-h-screen flex justify-center items-center">
+      <span className="loading loading-spinner loading-lg"></span>
+    </div>
+  );
+}
+
   return (
     <div className="min-h-screen bg-linear-to-br from-blue-100 via-white to-purple-100 px-4 py-8 md:py-14 flex items-center justify-center">
       <div className="w-full sm:w-[85%] md:w-[70%] lg:max-w-md mx-auto bg-white/80 backdrop-blur-xl shadow-lg rounded-4xl p-6 sm:p-8 md:p-10 border border-purple-100 hover:shadow-purple-200 transition duration-500">
