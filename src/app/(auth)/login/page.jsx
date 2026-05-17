@@ -33,6 +33,10 @@ const LoginPage = () => {
 
     setLoading(true);
 
+    toast.loading("Logging in...", {
+      duration: 3000,
+    });
+
     const { data: res, error } = await authClient.signIn.email({
     email: data.email, 
     password: data.password,
@@ -41,18 +45,31 @@ const LoginPage = () => {
   });
 
     if(error){
-      toast.error(error.message);
+
+      toast.dismiss();
+
+      toast.error(error.message, {
+        duration: 3000,
+      });
+
+      setLoading(false);
       return;
     }
 
-    toast.success("Login successful!", {duration: 3000});
     setTimeout(() => {
+
+      toast.dismiss();
+
+      toast.success("Logged in successful!", {duration: 3000});
+
+      setTimeout(() => {
       window.location.href = "/";
     }, 2500);
+  }, 3000);
 
   };
 
-  return <div className="min-h-screen flex items-center justify-center bg-linear-to-r from-blue-100 via-white to bg-purple-100 px-4 py-10">
+  return <div className="min-h-screen flex items-center justify-center bg-linear-to-r from-blue-100 via-white to-purple-100 px-4 py-10">
 
     <div className=" max-w-lg bg-white backdrop-blur-lg shadow-2xl rounded-xl p-6 sm:p-8 md:p-10 my-6 border border-white/20">
       <h2 className="font-bold text-3xl text-center mb-6">Login Your Account</h2>
@@ -88,7 +105,13 @@ const LoginPage = () => {
           {errors.password && (<p className="text-red-700">{errors.password.message}</p>)} 
         </fieldset>
 
-        <button disabled={loading} className="btn w-full bg-linear-to-r from-blue-400 to-purple-400 border-none text-white font-bold rounded shadow-lg hover:shadow-xl hover:scale-105 active:scale-85 transition duration-300">{loading ? (<span className="loading loading-spinner loading-sm "></span> ):( "Login")}</button>
+        <button disabled={loading} className="btn w-full bg-linear-to-r from-blue-400 to-purple-400 border-none text-white font-bold rounded shadow-lg hover:shadow-xl hover:scale-105 active:scale-85 transition duration-300">{loading ? (<div className="flex items-center gap-2">
+          <span className="loading loading-spinner loading-sm "></span>
+          <span>Logging in...</span>
+          </div> 
+          ):(
+          "Login"
+          )}</button>
       </form>
       <div className="divider"><span className="font-semibold">OR</span></div>
 

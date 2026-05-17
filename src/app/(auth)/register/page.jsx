@@ -15,6 +15,7 @@ const RegisterPage = () => {
     } = useForm();
 
     const [isShowPassword, setIsShowPassword] =useState(false);
+    const [loading, setLoading] = useState(false);
         const handleGoogleSignIn = async() => {
           toast.loading("Signing in with Google...",
             {duration: 3000});
@@ -27,6 +28,13 @@ const RegisterPage = () => {
       };
 
   const handleRegister = async(data) => {
+
+    setLoading(true);
+
+    toast.loading("Registering your account...", {
+      duration: 3000,
+    });
+
     const { name, email, password, photo } = data;
 
     const {data: res, error} = await authClient.signUp.email({
@@ -38,12 +46,29 @@ const RegisterPage = () => {
     });
 
     if(error) {
-        toast.error(error.message);
-    }
+        toast.dismiss();
+        toast.error(error.message,{
+          duration: 3000,
+        });
+
+        setLoading(false);
+        return;
+
+      }
 
     if(res) {
-        toast.success("Registration successful!");
-    } 
+        setTimeout(() => {
+          toast.dismiss();
+
+          toast.success("Registered successfully! ", {
+            duration: 3000,
+          });
+
+          setTimeout(() => {
+            window.location.href = "/";
+        }, 2500);
+      }, 3000);
+    }
   };
 
   return <div className="min-h-screen py-10 md:py-16 px-4 bg-linear-to-r from-pink-100 via-white to-purple-100 flex justify-center">
@@ -111,8 +136,18 @@ const RegisterPage = () => {
           {errors.password && (<p className="text-red-700">{errors.password.message}</p>)} 
         </fieldset>
 
-        <button className="btn w-full bg-linear-to-r from-blue-400 to-purple-400 text-white font-bold rounded shadow-lg hover:shadow-xl hover:scale-105 active:scale-85 transition duration-300">
-          Register
+        <button
+        disabled={loading} 
+        className="btn w-full bg-linear-to-r from-blue-400 to-purple-400 text-white font-bold rounded shadow-lg hover:shadow-xl hover:scale-105 active:scale-85 transition duration-300">
+          {loading ? (
+            <div className="flex items-center gap-2">
+              <span className="loading loading-spinner loading-sm "></span>
+              <span>Registering...</span>
+            </div>
+             
+            ):(
+               "Register"
+          )}
         </button>
       </form>
 
