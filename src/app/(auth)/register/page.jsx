@@ -63,11 +63,12 @@ const RegisterPage = () => {
           toast.success("Registered successfully! ", {
             duration: 3000,
           });
+          setLoading(false);
 
           setTimeout(() => {
             window.location.href = "/";
-        }, 2500);
-      }, 3000);
+        }, 3000);
+      });
     }
   };
 

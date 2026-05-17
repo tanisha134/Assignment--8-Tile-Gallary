@@ -62,10 +62,12 @@ const LoginPage = () => {
 
       toast.success("Logged in successful!", {duration: 3000});
 
+      setLoading(false);
+
       setTimeout(() => {
       window.location.href = "/";
-    }, 2500);
-  }, 3000);
+    }, 3000);
+  });
 
   };
 
